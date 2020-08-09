@@ -29,9 +29,10 @@ function CadastroCategoria() {
 
   useEffect(() => {
     console.log('Vai lá filhão!');
-    const url_TOP = 'http://localhost:8080/categorias';
-    fetch(url_TOP);
-    fetch('http://localhost:8080/categorias')
+    const url_TOP = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'https://mybaconflix.herokuapp.com/categorias';
+    fetch(url_TOP)
       .then(async (respostaDoServidor) => {
         const resposta = await respostaDoServidor.json();
         setCategorias([
